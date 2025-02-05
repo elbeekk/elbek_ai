@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../domain/model/local_models_response.dart';
+
 part 'chat_event.dart';
 
 part 'chat_state.dart';

@@ -6,8 +6,8 @@ class ChatEvent with _$ChatEvent {
       {required Function(Stream<Uint8List>) onSuccess}) = SendMessage;
 
   const factory ChatEvent.appendMessage(StreamMessage message) = AppendMessage;
+
   const factory ChatEvent.pickImages() = PickImages;
+
   const factory ChatEvent.removeImage(Uint8List image) = RemoveImage;
-
-
 }

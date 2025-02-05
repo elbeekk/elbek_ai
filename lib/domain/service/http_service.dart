@@ -1,25 +1,25 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+import 'package:elbek_ai/app_constants.dart';
 
 class HttpService {
-  Dio client(
-      {bool requireAuth = false,
-      bool file = false,
-      bool routing = false,
-      String? domain,
-      }) {
+  Dio client({
+    bool requireAuth = false,
+    bool file = false,
+    bool routing = false,
+    String? domain,
+  }) {
     final dio = Dio(
       BaseOptions(
-        baseUrl: "http://localhost:11434",
-        connectTimeout: const Duration(minutes: 20),
-        receiveTimeout: const Duration(minutes: 20),
-        sendTimeout: const Duration(minutes: 20),
+        baseUrl: AppConstants.localUrl,
+        connectTimeout: const Duration(hours: 5),
+        receiveTimeout: const Duration(minutes: 1),
+        sendTimeout: const Duration(minutes: 1),
         headers: {
-          'Accept':
-              '*/*',
+          'Accept': '*/*',
           'Content-type': 'application/json',
-          "Connection":"keep-alive"
+          "Connection": "keep-alive"
         },
       ),
     )..interceptors.add(

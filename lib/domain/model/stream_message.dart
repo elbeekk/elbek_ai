@@ -126,10 +126,11 @@ class Message {
   Map<String, dynamic> toJson() => {
         "role": role,
         "content": content,
-        "images": images
-            ?.map(
-              (e) => base64Encode(e),
-            )
-            .toList(),
+        if (images?.isNotEmpty ?? false)
+          "images": images
+              ?.map(
+                (e) => base64Encode(e),
+              )
+              .toList(),
       };
 }
