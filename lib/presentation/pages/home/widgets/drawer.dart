@@ -1,13 +1,10 @@
 import 'dart:convert';
-
-import 'package:elbek_ai/domain/model/local_models_response.dart';
 import 'package:elbek_ai/domain/model/pulling_response.dart';
 import 'package:elbek_ai/presentation/style/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:local_auth/local_auth.dart';
-
 import '../../../../application/models/models_bloc.dart';
 import '../../../../domain/service/helper.dart';
 
@@ -32,7 +29,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: AppHelper.screenSize(context).width * .12,
+      width: 190,
       decoration: const BoxDecoration(
         color: Color.fromRGBO(47, 46, 46, 1),
         border: Border(

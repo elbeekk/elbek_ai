@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:elbek_ai/presentation/pages/home/widgets/message_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:local_auth/local_auth.dart';
@@ -54,105 +55,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                         ][index];
                         final isLast = length == index + 1;
                         final isMine = current.role == 'user';
-                        return Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8),
-                              child: Column(
-                                children: [
-                                  if (current.images?.isNotEmpty ?? false)
-                                    Container(
-                                      height: 200,
-                                      margin: const EdgeInsets.symmetric(
-                                          vertical: 6),
-                                      child: ListView.separated(
-                                        reverse: true,
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: current.images?.length ?? 0,
-                                        itemBuilder: (context, index) {
-                                          final currentImage =
-                                              current.images?[index];
-                                          return AspectRatio(
-                                            aspectRatio: 1,
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                image: DecorationImage(
-                                                    image: MemoryImage(
-                                                        currentImage!),
-                                                    fit: BoxFit.cover),
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        separatorBuilder:
-                                            (BuildContext context, int index) {
-                                          return const SizedBox(
-                                            width: 4,
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  Row(
-                                    mainAxisAlignment: isMine
-                                        ? MainAxisAlignment.end
-                                        : MainAxisAlignment.start,
-                                    children: [
-                                      Flexible(
-                                        child: Container(
-                                          constraints: isMine
-                                              ? BoxConstraints(
-                                                  maxWidth:
-                                                      MediaQuery.sizeOf(context)
-                                                              .width *
-                                                          0.36)
-                                              : null,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            color: isMine
-                                                ? const Color.fromRGBO(
-                                                    77, 77, 77, 1)
-                                                : Colors.transparent,
-                                          ),
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 6),
-                                          child: SelectableText(
-                                            (current.content ?? "").trim(),
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            if (isLast &&
-                                state.lastMessage == null &&
-                                state.isLoading)
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 12, top: 16),
-                                    height: 15,
-                                    width: 15,
-                                    child: const FittedBox(
-                                      child: CircularProgressIndicator(
-                                        color: Colors.white,
-                                        strokeWidth: 1.5,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                          ],
-                        );
+                        return MessageItem(
+                            isLast: isLast, isMine: isMine, current: current);
                       },
                     ),
                   );

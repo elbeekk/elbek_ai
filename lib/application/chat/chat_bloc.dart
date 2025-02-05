@@ -42,7 +42,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           (l) async {
             await event.onSuccess.call(l);
           },
-          (r) {},
+          (r) {
+            emit(state.copyWith(isLoading: false));
+          },
         );
       } else {
         final temp = state.images;
